@@ -59,7 +59,7 @@ app.delete("/gratitudeEntries/:id", async (req, res, next) => {
   }
 });
 
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   return res.status(err.status || 400).json({
     status: err.status || 400,
     message: err.message || "there was an error processing request",
