@@ -1,4 +1,4 @@
-const mongoose = require("mongoose") // requiring the mongoose package
+const mongoose = require("mongoose"); // requiring the mongoose package
 
 const gratitudeSchema = new mongoose.Schema({
   // creating a schema for gratitude
@@ -13,8 +13,8 @@ const gratitudeSchema = new mongoose.Schema({
     type: Boolean, // it is a boolean
     default: false, // the default is false
   },
-})
+});
 
-const gratitudeModel = mongoose.model("GratitudeEntry", gratitudeSchema) // creating the model from the schema
+const gratitudeModel = mongoose.model("GratitudeEntry", gratitudeSchema); // creating the model from the schema
 
-module.exports = gratitudeModel // exporting the model
+module.exports = gratitudeModel; // exporting the model
