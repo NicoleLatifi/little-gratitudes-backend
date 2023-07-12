@@ -16,9 +16,20 @@ function success(res, payload) {
   return res.status(200).json(payload);
 }
 
+// TODO: probably remove this get
 app.get("/gratitudeEntries", async (req, res, next) => {
   try {
     const gratitudeEntries = await db.GratitudeEntry.find({});
+    return success(res, gratitudeEntries);
+  } catch (err) {
+    next({ status: 400, message: "failed to get gratitude entries" });
+  }
+});
+
+app.get("/gratitudeEntries/:userID", async (req, res, next) => {
+  try {
+    const userID = req.params.userID;
+    const gratitudeEntries = await db.GratitudeEntry.find({ userID: userID });
     return success(res, gratitudeEntries);
   } catch (err) {
     next({ status: 400, message: "failed to get gratitude entries" });
@@ -79,8 +90,6 @@ mongoose
   .catch((err) => {
     console.error("Error connecting to MongoDB Atlas", err);
   });
-
-// Rest of your code...
 
 // Start the server
 app.listen(PORT, () => {
